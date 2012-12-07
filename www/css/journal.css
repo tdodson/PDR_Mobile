@@ -11,4 +11,15 @@
 	background-image: url(background/bk_body.png);
 }
 
+/*To change the color/gradient of the title bar, uncomment the code below and change the "background" property.*/
+
+.ui-bar-a {	
+	background: rgba(140, 32, 32, 0.8);
+}
+
+ul#list_a li a, ul#list_b li a, ul#list_c li a, ul#list_d li a, div.ui-btn-inner {
+	background: url("background/trans-bg.png") repeat scroll 0 0 transparent;
+	border-top: 1px solid #8C2020;
+	margin-top: -3px;
+}
 
