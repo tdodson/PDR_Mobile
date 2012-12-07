@@ -25,7 +25,7 @@ div#htmlContent a {
 /*<---------------------Swatch A: Main Application Header------------------->*/
 /*To change the color/gradient of the title bar, uncomment the code below and change the "background" property.*/
 
-.ui-bar-a {	
+.ui-bar-a, .ui-bar-b, .ui-bar-c, .ui-bar-d {	
 	background: rgba(140, 32, 32, 0.8);
 }
 
@@ -81,11 +81,64 @@ div.ui-btn-text a.ui-link-inherit {
 	border-bottom: 1px solid #8C2020;;
 }
 
+/* Style for Home and Back Buttons */
+span.ui-btn-inner.ui-btn-corner-all {
+	color: #FFF;
+	text-shadow: 0 -1px 1px black;
+}
 
+.ui-btn-up-c {
+	border: 1px solid rgba(140, 32, 32, 0.8);
+}
 
+/*<---------------------Font Stack------------------->*/
+/*Basic font styling for all swatches*/
+body,
+.ui-bar-a,
+.ui-bar-a input,
+.ui-bar-a select,
+.ui-bar-a textarea,
+.ui-bar-a button,
+.ui-bar-b,
+.ui-bar-b input,
+.ui-bar-b select,
+.ui-bar-b textarea,
+.ui-bar-b button,
+.ui-bar-c,
+.ui-bar-c input,
+.ui-bar-c select,
+.ui-bar-c textarea,
+.ui-bar-c button,
+.ui-bar-d,
+.ui-bar-d input,
+.ui-bar-d select,
+.ui-bar-d textarea,
+.ui-bar-d button,
+ {
+ 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+ }
 
+/*Global Text Styling for Menu Items*/
+h2.ui-li-heading {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 
+/* HTML Article Display */
+div#articleContent, 
+div#htmlContent {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 
+/* Main Application Header */
+.ui-bar h1.ui-title {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 
-
+.ui-bar-a,
+.ui-bar-a input,
+.ui-bar-a select,
+.ui-bar-a textarea,
+.ui-bar-a button {
+	     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 
