@@ -1,0 +1,81 @@
+/* Style customization for your specific journal (colors, background, etc.)goes in this file. Icons can be changed by modifying journal.js. */
+
+/*See below a couple of examples of changes to Yana's base CSS.*/
+
+/*To change the background pattern for your application, uncomment the code below (i.e., delete the opening "slash asterisk" and closing "asterisk slash") and change the "background-image" property.*/
+
+.ui-body-c, .ui-body-c select, .ui-body-c textarea, .ui-body-c button {
+	background-image: url(img/brushed_alu_dark.png);
+}
+
+.ui-body-c {
+	color: #fff;
+	text-shadow: none;
+}
+
+.ui-shadow {
+	box-shadow: none;
+}
+
+a {
+	text-decoration: none;
+	color: #b62929;
+}
+
+.ui-body-c .ui-link, .ui-body-c .ui-link:hover {
+    color: #b62929;
+    font-weight: bold;
+}
+
+/*To change the color/gradient of the title bar, uncomment the code below and change the "background" property.*/
+
+.ui-bar-a {	
+	background: rgba(140, 32, 32, 0.8);
+}
+
+ul#homeSection1List li a, ul#homeSection2List li a {
+	padding: 20px 0px 20px 70px;
+	background: url("img/trans-bg.png") repeat scroll 0 0 transparent;
+	border-top: 1px solid #8C2020;
+	margin-top: -2px;
+}
+
+ul#homeSection1List li:last-child a {
+	border-bottom: 1px solid #8C2020;
+}
+
+ul#homeSection1List li:first-child a {
+	border-top: 1px solid #8C2020;
+}
+
+.ui-btn-text {
+	position: static;
+}
+
+.ui-btn-up-c a.ui-link-inherit, a.ui-link-inherit:hover, a.ui-link-inherit:active, a.ui-link-inherit:focus {
+	color: #fff;
+	text-shadow: none;
+}
+
+#articleContent, .htmlContent.ui-content, .opensearchContent {
+	background: url("img/trans-bg.png") repeat scroll 0 0 transparent;
+	border-top: 3px solid #8C2020;
+}
+
+ul#currentIssueList li a, ul#archiveList li a, ul#subSectionList li a, ul#blogList li a, ul#bookshelfList li a {
+	background: url("img/trans-bg.png") repeat scroll 0 0 transparent;
+	border-top: 1px solid #8C2020;
+	margin-top: -2px;
+}
+
+.ui-corner-tl, .ui-corner-tr, .ui-corner-bl, .ui-corner-br, .ui-corner-top, .ui-corner-bottom, .ui-corner-right, .ui-corner-left, .ui-corner-all, .ui-btn-corner-tl, .ui-btn-corner-tr, .ui-btn-corner-bl, .ui-btn-corner-br, .ui-btn-corner-top, .ui-btn-corner-bottom, .ui-btn-corner-right, .ui-btn-corner-left, .ui-btn-corner-all {
+    background-clip: none;
+}
+.ui-corner-top {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+
+
+

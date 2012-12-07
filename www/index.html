@@ -1,0 +1,192 @@
+<!DOCTYPE html> 
+<html> 
+  <head>
+    <!-- 
+     This is a generic yana html file: you should not have to modify this file.
+     All your modifications should be made in journal.js and journal.css
+     -->
+    <title></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- external javascript and css yana depends on -->
+    <script src="lib/jquery-1.6.1.min.js"></script>
+    <script src="lib/jquery-mobile-global-config.js"></script>
+    <script src="lib/amplify.min.js"></script>            
+    <script src="lib/jsonStringify.js"></script>
+    <script src="lib/purl.js"></script>
+    <script src="lib/cordova-2.0.0.js"></script>
+    <script src="lib/childbrowser.js"></script>
+    <script src="lib/jquery.mobile-1.1.0/jquery.mobile-1.1.0.min.js"></script>
+    <script src="lib/yana.js"></script>
+    <link rel="stylesheet" href="lib/jquery.mobile-1.1.0/jquery.mobile-1.1.0.min.css" />
+    <link rel="stylesheet" href="css/yana.css" />    
+
+  </head>
+  <body>
+
+  <!-- HOME PAGE -->
+  <div data-role="page" data-add-back-btn="true" id="home">
+
+      <div data-role="header" class="ui-bar" data-theme="a">
+        <h1>Printer's Devil Review</h1>
+      </div>
+
+      <div data-role="content" class="ui-content" role="main" data-theme="b">
+
+          <ul data-role="listview" data-inset="true" id="list_a"> 
+            <!-- CURRENT ISSUE -->
+            <li id="current" data-source="http://pdrjournal.org/currentissue.xml" class="feed">
+              <a href="#feedPage">
+                <img src="css/icons/CurrentIssueIcon.png" class="ui-li-icon ui-li-thumb"/>
+                <h2>Current Issue</h2>
+              </a>
+
+            </li> 
+            <!-- ARCHIVE -->
+            <li id="archive" data-source="http://pdrjournal.org/mobile/archive.xml" class="feed">
+              <a href="#feedPage">
+                <img src="css/icons/ArchiveIcon.png" class="ui-li-icon"/>
+                <h2>Archive</h2>
+              </a>
+            </li> 
+            <!-- FAVORITES -->
+            <li id="favorites" class="favorites">
+              <a href="#favPage">
+                <img src="css/icons/FavoritesIcon.png" class="ui-li-icon"/>
+                <h2>Favorites</h2>
+              </a>
+            </li>
+            <!-- Download Issues -->
+            <li id="download" data-source="http://pdrjournal.org/mobile/download.html" class="html">
+              <a href="#htmlPage">
+                <img src="css/icons/AboutIcon.png" class="ui-li-icon"/>
+                <h2>Download Issues</h2>
+              </a>
+            </li>
+            <!-- Galleries -->
+            <li id="galleries" data-source="http://pdrjournal.org/mobile/galleries.html" class="html">
+              <a href="#htmlPage">
+                <img src="css/icons/AboutIcon.png" class="ui-li-icon"/>
+                <h2>Galleries</h2>
+              </a>
+            </li>
+          </ul>
+
+          <ul data-role="listview" data-inset="true" id="list_b">
+            <!-- ABOUT -->
+            <li id="about" data-source="http://pdrjournal.org/mobile/about.html" class="html">
+              <a href="#htmlPage">
+                <img src="css/icons/AboutIcon.png" class="ui-li-icon"/>
+                <h2>About</h2>
+              </a>
+            </li>
+            <!-- BLOG -->
+            <li id="announce" data-source="http://pdrjournal.org/blog.xml" class="feed">
+              <a href="#feedPage">
+                <img src="css/icons/AnnouncementsIcon.png" class="ui-li-icon"/>
+                <h2>Blog</h2>
+              </a>
+            </li> 
+            <!-- AUTHORS -->
+            <li id="authors" class="html" data-source="http://pdrjournal.org/mobile/forAuthors.html">
+              <a href="#htmlPage">
+                <img src="css/icons/AuthorIcon.png" class="ui-li-icon"/>
+                <h2>For Authors</h2>
+              </a>
+            </li>
+            <!-- LINKS -->
+            <li id="links" class="html" data-source="http://osc.hul.harvard.edu/sites/osc.hul.harvard.edu.yana/mobile/yana_links.html" data-them="c">
+              <a href="#htmlPage">
+                <img src="css/icons/LinksIcon.png" class="ui-li-icon"/>
+                <h2>Links</h2>
+              </a>
+            </li>
+            <!-- Bookshelf -->
+            <li id="announce" data-source="http://pdrjournal.org/mobile/bookshelf.xml" class="feed">
+              <a href="#feedPage">
+                <img src="css/icons/AnnouncementsIcon.png" class="ui-li-icon"/>
+                <h2>Blog</h2>
+              </a>
+            </li> 
+
+          </ul>
+
+      </div>
+  </div>
+
+  <!-- SEARCH PAGE -->
+  <div data-role="page" id="searchPage" data-url="searchPage">
+    <div data-role="header" id="searchHeader" data-theme="b">
+      <a href="#" data-rel="back" data-icon="arrow-l">Back</a>
+      <h1>Search</h1>
+      <a href="#home" data-icon="home">Home</a>
+    </div>
+    <div data-role="content" class="opensearchContent" data-theme="b">
+      <form action="http://dash.harvard.edu/open-search/" id="osForm">
+        <input type="search" name="query" id="search-basic" value="" />
+        <input type="hidden" name="sort_by" value="2"/>
+        <input type="hidden" name="rpp" value="5"/>
+        <input type="hidden" name="order" value="desc"/>
+        <input type="hidden" name="format" value="rss"/>
+        <input type="submit" value="Search"/>
+      </form>
+      <div id="searchResultsContainer">
+        <ul data-role="listview" data-inset="true" id="searchResults"></ul>
+      </div> 
+    </div>
+
+ </div>
+
+  <!-- JOURNAL ARTICLE LIST -->
+  <div data-role="page" id="feedPage" data-theme="b">
+    <div data-role="header" data-theme="a">
+      <a href="#" data-rel="back" data-icon="arrow-l">Back</a>
+      <h1 id="feedTitle"></h1>
+      <a href="#home" data-icon="home">Home</a>
+    </div>
+    <div data-role="content" >
+      <ul data-role="listview" data-inset="true" id="feedList"></ul>
+    </div>
+  </div>  
+
+  <!-- FAVORITES LIST -->
+  <div data-role="page" id="favPage">
+    <div data-role="header" data-theme="a">
+      <a href="#" data-rel="back" data-icon="arrow-l">Back</a>
+      <h1 id="favTitle">Favorites</h1>
+      <a href="#home" data-icon="home">Home</a>
+    </div>
+    <div data-role="content" id="favContent" data-theme="c">
+      <ul data-role="listview" data-inset="true" id="favList"></ul>
+    </div>
+  </div>  
+
+  <!-- ARTICLE DETAILS -->
+  <div data-role="page" id="articleDetails">
+    <div data-role="header" data-theme="c">
+      <a href="#" data-rel="back" data-icon="arrow-l">Back</a>
+      <h1 id="articleTitle"></h1>
+      <a href="#home" data-icon="home">Home</a>
+    </div>
+    <div data-role="content" data-theme="c">
+      <div id="articleContent"></div>
+    </div>
+    <div data-role="footer" class="ui-bar" id="articleFooter" data-position="fixed" data-theme="d"></div>
+  </div>  
+
+  <!-- HTML DISPLAY -->
+  <div data-role="page" id="htmlPage" >
+    <div data-role="header" data-theme="c" >
+      <a href="#" data-rel="back" data-icon="arrow-l">Back</a>
+      <h1 id="htmlTitle"></h1>
+      <a href="#home" data-icon="home">Home</a>
+    </div>
+    <div data-role="content" data-theme="c" >
+      <div id="htmlContent"></div>
+    </div>
+  </div>
+
+
+  </body>
+</html>
