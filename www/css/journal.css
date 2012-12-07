@@ -2,6 +2,17 @@
 
 /*See below a couple of examples of changes to Yana's base CSS.*/
 
+.ui-shadow {
+	box-shadow: none;
+}
+
+/*<---------------------Content / HTML Article Display------------------->*/
+div#articleContent a,
+div#htmlContent a {
+	color: #8C2020;
+}
+
+
 /*To change the background pattern for your application, uncomment the code below (i.e., delete the opening "slash asterisk" and closing "asterisk slash") and change the "background-image" property.*/
 
 .ui-body-b,
@@ -11,15 +22,70 @@
 	background-image: url(background/bk_body.png);
 }
 
+/*<---------------------Swatch A: Main Application Header------------------->*/
 /*To change the color/gradient of the title bar, uncomment the code below and change the "background" property.*/
 
 .ui-bar-a {	
 	background: rgba(140, 32, 32, 0.8);
 }
 
-div.ui-btn-inner {
+/*<---------------------Menus------------------->*/
+/* Changes the background image of the menus */
+.ui-btn-inner {
 	background: url("background/trans-bg.png") repeat scroll 0 0 transparent;
-	border-top: 1px solid #8C2020;
-	margin-top: -3px;
 }
+
+/* Turns off rounded corners in menus */
+.ui-corner-tl, .ui-corner-tr, .ui-corner-bl, .ui-corner-br, .ui-corner-top, .ui-corner-bottom, .ui-corner-right, .ui-corner-left, .ui-corner-all, .ui-btn-corner-tl, .ui-btn-corner-tr, .ui-btn-corner-bl, .ui-btn-corner-br, .ui-btn-corner-top, .ui-btn-corner-bottom, .ui-btn-corner-right, .ui-btn-corner-left, .ui-btn-corner-all {
+    background-clip: none;
+}
+.ui-corner-top {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+/* Basic Styling for Menu Items */
+.ui-btn-up-b, .ui-btn-hover-b {
+	border: none;
+	background: inherit;
+	margin-bottom: -2px;
+	
+}
+
+/* Menu Hover Effect (Grey-Out) */
+.ui-btn-hover-b {
+	background: #dfdfdf;
+	font-weight: bold;
+}
+
+/* Red border for main nav items */
+ul#list_a li a, ul#list_b li a {
+	border-bottom: 1px solid #8C2020;
+} 
+
+ul#list_a li:first-child a, ul#list_b li:first-child a {
+	border-top: 1px solid #8C2020;
+}
+
+/* Text color for navigation main nav items */
+
+h2.ui-li-heading {
+	color: #FFF;
+	text-shadow: 0 1px 1px #2f3e46;
+}
+
+/* Text color and border for subnavigation items */
+div.ui-btn-text a.ui-link-inherit {
+	color: #FFF;
+	text-shadow: 0 1px 1px #2f3e46;
+	border-bottom: 1px solid #8C2020;;
+}
+
+
+
+
+
+
+
+
 
