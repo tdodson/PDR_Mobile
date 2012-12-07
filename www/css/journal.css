@@ -1,10 +1,14 @@
-/* Style customization for your specific journal (colors, background, etc.)goes in this file. Icons can be changed by modifying journal.js. */
+/* Style customization for your specific journal (colors, background, etc.)goes in this file. */
 
 /*See below a couple of examples of changes to Yana's base CSS.*/
 
 /*To change the background pattern for your application, uncomment the code below (i.e., delete the opening "slash asterisk" and closing "asterisk slash") and change the "background-image" property.*/
 
 .ui-body-b,
-.ui-overlay-b {
+.ui-overlay-b,
+.ui-body-c,
+.ui-overlay-c {
 	background-image: url(background/bk_body.png);
 }
+
+
