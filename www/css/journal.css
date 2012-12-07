@@ -44,11 +44,17 @@ div#htmlContent a {
     border-top-right-radius: 0;
 }
 
+.ui-corner-bottom {
+	border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
 /* Basic Styling for Menu Items */
 .ui-btn-up-b, .ui-btn-hover-b {
 	border: none;
 	background: inherit;
 	margin-bottom: -2px;
+
 	
 }
 
