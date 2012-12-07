@@ -53,15 +53,14 @@ div#htmlContent a {
 .ui-btn-up-b, .ui-btn-hover-b {
 	border: none;
 	background: inherit;
-	margin-bottom: -2px;
-
-	
+	margin-bottom: -2px;	
 }
 
 /* Menu Hover Effect (Grey-Out) */
 .ui-btn-hover-b {
 	background: #dfdfdf;
 	font-weight: bold;
+	margin: 0;
 }
 
 /* Red border for main nav items */
