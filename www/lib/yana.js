@@ -88,7 +88,8 @@
       // --------------------------------------------------------------------------
       function showInChildBrowser(url){  
         if (window.plugins && (window.plugins.childBrowser != null) ) {
-          Cordova.exec("ChildBrowserCommand.showWebPage", url);
+          //Cordova.exec("ChildBrowserCommand.showWebPage", url);
+          window.plugins.childBrowser.showWebPage("http://www.google.com", { showLocationBar: true });
           return false;
         } else {
           return true;
