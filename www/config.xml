@@ -19,7 +19,7 @@
     <preference name="orientation"      value="default" />
     <preference name="target-device"    value="universal" />
     <preference name="fullscreen"       value="false" />
-    <preference name="stay-in-webview"  value="true" />
+    <preference name="stay-in-webview"  value="false" />
 
     <icon src="res/icon/cordova_512.png"        width="512" height="512" />
     <icon src="res/icon/cordova_android_96.png" width="96"  height="96"  gap:platform="android" />
@@ -46,6 +46,10 @@
     <gap:splash src="res/screen/iphone_retina_portrait.png"      width="640"  height="960"  gap:platform="ios" />
     <gap:splash src="res/screen/windows_phone_portrait.jpg"      width="480"  height="800"  gap:platform="winphone" />
 
-    <gap:plugin name="ChildBrowser"/>
+    <gap:plugin name="ChildBrowser" version="~3" />
+
+    <!-- This is the whitelist. For ChildBrowser to work correctly you need to enable domains here -->
+    <access origin="google.com" subdomains="true" />
+    <access origin="pdrjournal.org" subdomains="true" />
 
 </widget>
