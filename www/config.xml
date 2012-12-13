@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "edu.hul.harvard.osc.yana"
+        id        = "org.pdrjournal.app.mobile"
         version   = "2.0.0">
-    <name>Yana</name>
+    <name>PDR</name>
 
     <description>
-        An Open Source Template for Scholarly Journals.
+        Printer's Devil Review
     </description>
 
-    <author href="http://osc.hul.harvard.edu/yana" email="yana@hul.harvard.edu">
-        Yana Team
+    <author href="http://pdrjournal.org/staff" email="thomas_dodson@harvard.edu">
+        Thomas Dodson
     </author>
+
+    <feature name="http://api.phonegap.com/1.0/device" />
+
+    <preference name="phonegap-version" value="2.1.0" />
+    <preference name="orientation"      value="default" />
+    <preference name="target-device"    value="universal" />
+    <preference name="fullscreen"       value="false" />
 
     <icon src="res/icon/cordova_512.png"        width="512" height="512" />
     <icon src="res/icon/cordova_android_96.png" width="96"  height="96"  gap:platform="android" />
@@ -38,10 +45,6 @@
     <gap:splash src="res/screen/iphone_retina_portrait.png"      width="640"  height="960"  gap:platform="ios" />
     <gap:splash src="res/screen/windows_phone_portrait.jpg"      width="480"  height="800"  gap:platform="winphone" />
 
-    <feature name="http://api.phonegap.com/1.0/device" />
+    <gap:plugin name="ChildBrowser" version="~3" />
 
-    <preference name="phonegap-version" value="1.9.0" />
-    <preference name="orientation"      value="default" />
-    <preference name="target-device"    value="universal" />
-    <preference name="fullscreen"       value="false" />
 </widget>
