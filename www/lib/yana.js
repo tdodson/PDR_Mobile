@@ -263,13 +263,17 @@
                   currentItems = JSON.parse(result).query.results.item;
                   $.each(JSON.parse(result).query.results.item, function(index) {
                     addCachedItem(this);
+                    var thumb = this.content ? (this.content.url? this.content.url : '') : '';
+                    var thumbHtml = thumb ? '<img class="thumbnail" src="' + thumb + '" />' : '';
                     if (this.link.type === 'rss' && this.link.content) {
                        ul += '<li data-source="'+this.link.content+'" class="feed">' +
-                        '<a href="#feedPage&type=feed&url='+encodeURIComponent(this.link.content).replace(/\./g,'%2E')+'">'+this.title+'</a>' +
+                        '<a href="#feedPage&type=feed&url='+encodeURIComponent(this.link.content).replace(/\./g,'%2E')+'">'
+                           + thumbHtml + this.title+'</a>' +
                         '<ul data-role="listview" data-inset="true"></ul></li>';                             
                     } else {
                        ul += '<li class="articleDetails" data-item-index="'+index+'">'+
-                      '<a href="#articleDetails&type=item&url='+encodeURIComponent(this.link).replace(/\./g,'%2E')+'">'+this.title+' </a>';                     
+                      '<a href="#articleDetails&type=item&url='+encodeURIComponent(this.link).replace(/\./g,'%2E')+'">'
+                           + thumbHtml + this.title+' </a>';
                     } 
                   });
                 } else {
