@@ -13,6 +13,9 @@
         Thomas Dodson
     </author>
 
+    <gap:plugin name="ChildBrowser" />
+    <access origin="*" />
+
     <feature name="http://api.phonegap.com/1.0/device" />
 
     <preference name="phonegap-version" value="2.1.0" />
@@ -45,11 +48,5 @@
     <gap:splash src="res/screen/iphone_retina_landscape.png"     width="960"  height="640"  gap:platform="ios" />
     <gap:splash src="res/screen/iphone_retina_portrait.png"      width="640"  height="960"  gap:platform="ios" />
     <gap:splash src="res/screen/windows_phone_portrait.jpg"      width="480"  height="800"  gap:platform="winphone" />
-
-    <gap:plugin name="ChildBrowser" version="~3" />
-
-    <!-- This is the whitelist. For ChildBrowser to work correctly you need to enable domains here -->
-    <access origin="google.com" subdomains="true" />
-    <access origin="pdrjournal.org" subdomains="true" />
 
 </widget>
