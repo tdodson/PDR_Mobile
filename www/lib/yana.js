@@ -87,7 +87,7 @@
       // --------------------------- CHILD BROWSER --------------------------------
       // --------------------------------------------------------------------------
       function showInChildBrowser(url){  
-        if (window.plugins && (window.plugins.childBrowser != null) ) {
+        if (window.plugins.childBrowser != undefined)  {
           //Cordova.exec("ChildBrowserCommand.showWebPage", url);
           window.plugins.childBrowser.showWebPage(url, { showLocationBar: false });
           return false;
