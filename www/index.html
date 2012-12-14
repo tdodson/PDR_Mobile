@@ -8,7 +8,26 @@
     <title></title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
+      <script src="lib/jquery-1.6.1.min.js"></script>
+      <script src="lib/jquery-mobile-global-config.js"></script>
+      <script src="lib/amplify.min.js"></script>
+      <script src="lib/jsonStringify.js"></script>
+      <script src="lib/purl.js"></script>
+      <script src="cordova-2.2.0.js"></script>
+      <script src="childbrowser.js"></script>
+      <script src="lib/jquery.mobile-1.1.0/jquery.mobile-1.1.0.min.js"></script>
+      <script src="lib/yana.js"></script>
+      <script src="js/index.js"></script>
+      <script type="text/javascript">
+          app.initialize();
+          function launchBrowser() {
+              alert((window.plugins.childBrowser != undefined) + " should be true")
+              window.plugins.childBrowser.showWebPage('http://www.google.com',
+                      { showLocationBar: true });
+          }
+      </script>
+
     <!-- external javascript and css yana depends on -->
     <link rel="stylesheet" href="lib/jquery.mobile-1.1.0/jquery.mobile-1.1.0.min.css" />
     <link rel="stylesheet" href="css/yana.css" />    
@@ -22,6 +41,7 @@
 
       <div data-role="header" class="ui-bar" data-theme="a">
         <h1>Printer's Devil Review</h1>
+          <a onClick="launchBrowser()" href="#">What does it do?</a>
       </div>
 
       <div data-role="content" class="ui-content" role="main" data-theme="b">
@@ -171,20 +191,6 @@
       <div id="htmlContent"></div>
     </div>
   </div>
-
-  <script src="lib/jquery-1.6.1.min.js"></script>
-  <script src="lib/jquery-mobile-global-config.js"></script>
-  <script src="lib/amplify.min.js"></script>
-  <script src="lib/jsonStringify.js"></script>
-  <script src="lib/purl.js"></script>
-  <script src="cordova-2.2.0.js"></script>
-  <script src="childbrowser.js"></script>
-  <script src="lib/jquery.mobile-1.1.0/jquery.mobile-1.1.0.min.js"></script>
-  <script src="lib/yana.js"></script>
-  <script src="js/index.js"></script>
-  <script type="text/javascript">
-      app.initialize();
-  </script>
 
   </body>
 </html>
