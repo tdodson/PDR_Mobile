@@ -2,7 +2,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "org.pdrjournal.app.mobile"
-        version   = "2.2.0">
+        version   = "1.0.0">
     <name>PDR</name>
 
     <description>
@@ -13,12 +13,11 @@
         Thomas Dodson
     </author>
 
-    <gap:plugin name="ChildBrowser" />
-    <access origin="*" />
+    <preference name="phonegap-version" value="1.9.0" />
+    <gap:plugin name="ChildBrowser" version="3.0.4" />
 
     <feature name="http://api.phonegap.com/1.0/device" />
 
-    <preference name="phonegap-version" value="2.2.0" />
     <preference name="orientation"      value="default" />
     <preference name="target-device"    value="universal" />
     <preference name="fullscreen"       value="false" />
