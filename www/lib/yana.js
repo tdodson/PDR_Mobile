@@ -54,7 +54,7 @@
 
       if ( typeof data.toPage === "string" ) {
           var hash = $.mobile.path.parseUrl( data.toPage ).hash;
-          console.log("pagebeforechange: "+hash);
+          //console.log("pagebeforechange: "+hash);
           var type = $.url(hash).fparam('type');
           var url = $.url(hash).fparam('url'); 
           var index = getItemIndex(url); // is it in cache?
@@ -87,13 +87,13 @@
       // --------------------------- CHILD BROWSER --------------------------------
       // --------------------------------------------------------------------------
       function showInChildBrowser(url){
-        alert((window.plugins.childBrowser != undefined) + " should be true");
+        //alert((window.plugins.childBrowser != undefined) + " should be true");
         if (window.plugins.childBrowser != undefined)  {
           //Cordova.exec("ChildBrowserCommand.showWebPage", url);
           window.plugins.childBrowser.showWebPage(url, { showLocationBar: true });
           return false;
         } else {
-          alert("no childbrowser found");
+          //alert("no childbrowser found");
           return true;
         }  
       }
@@ -146,7 +146,8 @@
         $.each(favorites, function(index) {
          ul += '<li class="articleDetails" data-item-link="'+this.link+'" data-theme="c">' +
           '<a href="#articleDetails&type=item&url='+encodeURIComponent(this.link).replace(/\./g,'%2E')+
-          '&title='+encodeURIComponent(this.title)+'">'+this.title+'</a></li>';
+          '&title='+encodeURIComponent(this.title).replace(/\(/g, "%28").replace(/\)/g, "%29") +
+             '">'+this.title+'</a></li>';
         });
         currentItems = favorites;
         $('#favContent ul').html(ul).trigger('create');
@@ -209,14 +210,15 @@
         function() { 
           var url = $(this).attr("data-source");
           var title = $.trim($(this).find('a').text());
-          var hash = '#htmlPage&type=html&url=' + encodeURIComponent(url).replace(/\./g,'%2E') + '&title=' + encodeURIComponent(title);
+          var hash = '#htmlPage&type=html&url=' + encodeURIComponent(url).replace(/\./g,'%2E') + '&title='
+              + encodeURIComponent(title).replace(/\(/g, "%28").replace(/\)/g, "%29");
           window.location.replace(hash); // won't update properly otherwise...
           $('#htmlContent').hide();
           renderHtmlPage(url,title); // needed for refresh bug...
       });
       
       function renderHtmlPage(url,title) { 
-        console.log("renderHtmlPage title: "+title);
+        //console.log("renderHtmlPage title: "+title);
           var yqlUrl  = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22"+
             encodeURIComponent(url) + "%22";
           var html = '';
@@ -244,7 +246,8 @@
         function() { 
           var url = $(this).attr("data-source");
           var title = $.trim($(this).find('a').text());
-          var hash = '#feedPage&type=feed&url=' + encodeURIComponent(url).replace(/\./g,'%2E')+ '&title=' + encodeURIComponent(title);
+          var hash = '#feedPage&type=feed&url=' + encodeURIComponent(url).replace(/\./g,'%2E')+ '&title='
+              + encodeURIComponent(title).replace(/\(/g, "%28").replace(/\)/g, "%29");
           window.location.replace(hash); // won't update properly otherwise...
           $('#feedList').hide();
           renderFeedItems(url,title);
