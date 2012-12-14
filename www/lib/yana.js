@@ -86,12 +86,14 @@
       // --------------------------------------------------------------------------
       // --------------------------- CHILD BROWSER --------------------------------
       // --------------------------------------------------------------------------
-      function showInChildBrowser(url){  
+      function showInChildBrowser(url){
+        alert((window.plugins.childBrowser != undefined) + " should be true");
         if (window.plugins.childBrowser != undefined)  {
           //Cordova.exec("ChildBrowserCommand.showWebPage", url);
-          window.plugins.childBrowser.showWebPage(url, { showLocationBar: false });
+          window.plugins.childBrowser.showWebPage(url, { showLocationBar: true });
           return false;
         } else {
+          alert("no childbrowser found");
           return true;
         }  
       }
