@@ -89,11 +89,15 @@ var ChildBrowser = (function (gap) {
      * @param usePhoneGap   Load url in PhoneGap webview [optional]
      */
     ChildBrowser.openExternal = function(url, usePhoneGap) {
-        if (usePhoneGap) {
-            navigator.app.loadUrl(url);
+        if (device.platform.toLowerCase() == 'android') {
+            if (usePhoneGap) {
+                navigator.app.loadUrl(url);
+            } else {
+                gap.exec(null, null, "ChildBrowser", "openExternal", [url, usePhoneGap]);
+            }
         } else {
-            gap.exec(null, null, "ChildBrowser", "openExternal", [url, usePhoneGap]);
-        }
+            ChildBrowser.showWebPage(url);
+        };
     };
 
     /**
@@ -112,4 +116,4 @@ var ChildBrowser = (function (gap) {
     });
 
     return ChildBrowser;
-})(window.Cordova || window.PhoneGap);
+})(window.cordova || window.Cordova || window.PhoneGap);
