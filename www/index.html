@@ -21,11 +21,6 @@
       <script src="js/index.js"></script>
       <script type="text/javascript">
           app.initialize();
-          function launchBrowser() {
-              alert((window.plugins.childBrowser != undefined) + " should be true")
-              window.plugins.childBrowser.showWebPage('http://www.google.com',
-                      { showLocationBar: true });
-          }
       </script>
 
     <!-- external javascript and css yana depends on -->
@@ -48,7 +43,7 @@
           <ul data-role="listview" data-inset="true" id="list_a"> 
             <!-- CURRENT ISSUE -->
             <li id="current" data-source="http://pdrjournal.org/currentissue.xml" class="feed">
-              <a href="#feedPage">
+              <a href="#feedPage" class="yanaLink">
                 <img src="css/icons/book_w.png" class="ui-li-icon ui-li-thumb"/>
                 <h2>Current Issue</h2>
               </a>
@@ -56,28 +51,28 @@
             </li> 
             <!-- ARCHIVE -->
             <li id="archive" data-source="http://pdrjournal.org/mobile/archive.xml" class="feed">
-              <a href="#feedPage">
+              <a href="#feedPage" class="yanaLink">
                 <img src="css/icons/archive_w.png" class="ui-li-icon"/>
                 <h2>Archive</h2>
               </a>
             </li> 
             <!-- FAVORITES -->
             <li id="favorites" class="favorites">
-              <a href="#favPage">
+              <a href="#favPage" class="yanaLink">
                 <img src="css/icons/star_w.png" class="ui-li-icon"/>
                 <h2>Favorites</h2>
               </a>
             </li>
             <!-- Download Issues -->
             <li id="download" data-source="http://pdrjournal.org/mobile/download.html" class="html">
-              <a href="#htmlPage">
+              <a href="#htmlPage" class="yanaLink">
                 <img src="css/icons/download_w.png" class="ui-li-icon"/>
                 <h2>Download Issues</h2>
               </a>
             </li>
             <!-- Galleries -->
             <li id="galleries" data-source="http://pdrjournal.org/mobile/galleries.html" class="html">
-              <a href="#htmlPage">
+              <a href="#htmlPage" class="yanaLink">
                 <img src="css/icons/gallery_w.png" class="ui-li-icon"/>
                 <h2>Galleries</h2>
               </a>
@@ -87,28 +82,28 @@
           <ul data-role="listview" data-inset="true" id="list_b">
             <!-- ABOUT -->
             <li id="about" data-source="http://pdrjournal.org/mobile/about.html" class="html">
-              <a href="#htmlPage">
+              <a href="#htmlPage" class="yanaLink">
                 <img src="css/icons/info_w.png" class="ui-li-icon"/>
                 <h2>About</h2>
               </a>
             </li>
             <!-- BLOG -->
             <li id="announce" data-source="http://pdrjournal.org/blog.xml" class="feed">
-              <a href="#feedPage">
+              <a href="#feedPage" class="yanaLink">
                 <img src="css/icons/blog_w.png" class="ui-li-icon"/>
                 <h2>Blog</h2>
               </a>
             </li> 
             <!-- AUTHORS -->
             <li id="authors" class="html" data-source="http://pdrjournal.org/mobile/forAuthors.html">
-              <a href="#htmlPage">
+              <a href="#htmlPage" class="yanaLink">
                 <img src="css/icons/authors_w.png" class="ui-li-icon"/>
                 <h2>For Authors</h2>
               </a>
             </li>
             <!-- LINKS -->
             <li id="links" class="html" data-source="http://pdrjournal.org/mobile/links.html" data-them="c">
-              <a href="#htmlPage">
+              <a href="#htmlPage" class="yanaLink">
                 <img src="css/icons/links_w.png" class="ui-li-icon"/>
                 <h2>Links</h2>
               </a>
@@ -122,9 +117,9 @@
   <!-- SEARCH PAGE -->
   <div data-role="page" id="searchPage" data-url="searchPage">
     <div data-role="header" id="searchHeader" data-theme="b">
-      <a href="#" data-rel="back" data-icon="arrow-l">Back</a>
+      <a href="#" data-rel="back" data-icon="arrow-l" class="yanaLink">Back</a>
       <h1>Search</h1>
-      <a href="#home" data-icon="home">Home</a>
+      <a href="#home" data-icon="home" class="yanaLink">Home</a>
     </div>
     <div data-role="content" class="opensearchContent" data-theme="b">
       <form action="http://dash.harvard.edu/open-search/" id="osForm">
@@ -145,9 +140,9 @@
   <!-- JOURNAL ARTICLE LIST -->
   <div data-role="page" id="feedPage" data-theme="b">
     <div data-role="header" data-theme="a">
-      <a href="#" data-rel="back" data-icon="arrow-l">Back</a>
+      <a href="#" data-rel="back" data-icon="arrow-l" class="yanaLink">Back</a>
       <h1 id="feedTitle"></h1>
-      <a href="#home" data-icon="home">Home</a>
+      <a href="#home" data-icon="home" class="yanaLink">Home</a>
     </div>
     <div data-role="content" >
       <ul data-role="listview" data-inset="true" id="feedList"></ul>
@@ -157,9 +152,9 @@
   <!-- FAVORITES LIST -->
   <div data-role="page" id="favPage">
     <div data-role="header" data-theme="a">
-      <a href="#" data-rel="back" data-icon="arrow-l">Back</a>
+      <a href="#" data-rel="back" data-icon="arrow-l" class="yanaLink">Back</a>
       <h1 id="favTitle">Favorites</h1>
-      <a href="#home" data-icon="home">Home</a>
+      <a href="#home" data-icon="home" class="yanaLink">Home</a>
     </div>
     <div data-role="content" id="favContent" data-theme="c">
       <ul data-role="listview" data-inset="true" id="favList"></ul>
@@ -169,9 +164,9 @@
   <!-- ARTICLE DETAILS -->
   <div data-role="page" id="articleDetails">
     <div data-role="header" data-theme="c">
-      <a href="#" data-rel="back" data-icon="arrow-l">Back</a>
+      <a href="#" data-rel="back" data-icon="arrow-l" class="yanaLink">Back</a>
       <h1 id="articleTitle"></h1>
-      <a href="#home" data-icon="home">Home</a>
+      <a href="#home" data-icon="home" class="yanaLink">Home</a>
     </div>
     <div data-role="content" data-theme="c">
       <div id="articleContent"></div>
@@ -182,9 +177,9 @@
   <!-- HTML DISPLAY -->
   <div data-role="page" id="htmlPage" >
     <div data-role="header" data-theme="c" >
-      <a href="#" data-rel="back" data-icon="arrow-l">Back</a>
+      <a href="#" data-rel="back" data-icon="arrow-l" class="yanaLink">Back</a>
       <h1 id="htmlTitle"></h1>
-      <a href="#home" data-icon="home">Home</a>
+      <a href="#home" data-icon="home" class="yanaLink">Home</a>
     </div>
     <div data-role="content" data-theme="c" >
       <div id="htmlContent"></div>

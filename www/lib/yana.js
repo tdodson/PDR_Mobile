@@ -1,12 +1,11 @@
+    // initialize favorites
     var favorites = amplify.store("YANA.favorites") ? amplify.store("YANA.favorites") : [];
     var cachedItems = amplify.store("YANA.items") ? amplify.store("YANA.items") : [];
 
     $(document).ready(function () {
-    
-      // initialize favorites
-      //if (amplify.store("YANA.favorites")) favorites = amplify.store("YANA.favorites");
-      //if (amplify.store("YANA.items")) cachedItems = amplify.store("YANA.items");
 
+      // bind all links to childBrowser
+      $('a').bind('click',handleLinks(this));
 
       // --------------------------------------------------------------------------
       // --------------------------- SEARCH ---------------------------------------
@@ -56,13 +55,13 @@
           var hash = $.mobile.path.parseUrl( data.toPage ).hash;
           //console.log("pagebeforechange: "+hash);
           var type = $.url(hash).fparam('type');
-          var url = $.url(hash).fparam('url'); 
+          var url = $.url(hash).fparam('url');
           var index = getItemIndex(url); // is it in cache?
           if (hash === '#favPage') { renderFavorites(); }
           if (url !== null) {
             if (type === 'item') {  if (index !== -1) renderItemDetails(index);
-            } else if (type === 'feed') { renderFeedItems(url,$.url(hash).fparam('title')); 
-            } else if (type === 'html') { renderHtmlPage(url,$.url(hash).fparam('title')); } 
+            } else if (type === 'feed') { renderFeedItems(url,$.url(hash).fparam('title'));
+            } else if (type === 'html') { renderHtmlPage(url,$.url(hash).fparam('title')); }
           }
       }
     });
@@ -87,15 +86,21 @@
       // --------------------------- CHILD BROWSER --------------------------------
       // --------------------------------------------------------------------------
       function showInChildBrowser(url){
-        //alert((window.plugins.childBrowser != undefined) + " should be true");
-        if (window.plugins.childBrowser != undefined)  {
-          //Cordova.exec("ChildBrowserCommand.showWebPage", url);
-          window.plugins.childBrowser.showWebPage(url, { showLocationBar: true });
-          return false;
-        } else {
-          //alert("no childbrowser found");
-          return true;
-        }  
+          if (window.plugins.childBrowser != undefined)  {
+            window.plugins.childBrowser.showWebPage(url, { showLocationBar: true });
+            return false;
+          } else {
+              return true;
+          }
+      }
+      function handleLinks(link){
+            // if not a yanaLink, launch childBrowser
+            if (!$(link).hasClass("yanaLink")) {
+                var thisUrl = link.attr('href');
+                showInChildBrowser(thisUrl);
+            } else {
+                return true;
+            }
       }
 
       // --------------------------------------------------------------------------
@@ -175,12 +180,18 @@
           buttons += '<a onclick="return showInChildBrowser(\'' + cachedItems[itemIndex].link + '\');" '+
             'rel="external" href="'+cachedItems[itemIndex].link+'" data-role="button">Web</a> ';
         }
-          buttons += '<a href="#" id="removeFavButton" data-item-index="'+itemIndex+'" data-item-link="'+cachedItems[itemIndex].link+
+          buttons += '<a href="#" id="removeFavButton" data-item-index="'+itemIndex+'" data-item-link="'+
+              cachedItems[itemIndex].link+
             '" class="deleteFavoriteButton" data-role="button">Remove from Favorites</a>';
-          buttons += '<a href="#" id="addFavButton" data-item-index="'+itemIndex+'" data-item-link="'+cachedItems[itemIndex].link+
+          buttons += '<a href="#" id="addFavButton" data-item-index="'+itemIndex+'" data-item-link="'+
+              cachedItems[itemIndex].link+
             '" class="addFavoriteButton" data-role="button">Add to Favorites</a>';            
         $("#articleFooter").html(buttons).trigger('create');
-        if (getFavoriteIndex(cachedItems[itemIndex].link) != -1) { $('#addFavButton').hide(); } else { $('#removeFavButton').hide(); }
+        if (getFavoriteIndex(cachedItems[itemIndex].link) != -1) {
+            $('#addFavButton').hide();
+        } else {
+            $('#removeFavButton').hide();
+        }
       }
 
       function getItemIndex(link) {
@@ -273,9 +284,9 @@
                     var thumbHtml = thumb ? '<img class="thumbnail" src="' + thumb + '" />' : '';
                     if (this.link.type === 'rss' && this.link.content) {
                        ul += '<li data-source="'+this.link.content+'" class="feed">' +
-                        '<a href="#feedPage&type=feed&url='+encodeURIComponent(this.link.content).replace(/\./g,'%2E')+'">'
-                           + thumbHtml + this.title+'</a>' +
-                        '<ul data-role="listview" data-inset="true"></ul></li>';                             
+                        '<a href="#feedPage&type=feed&url='+encodeURIComponent(this.link.content).replace(/\./g,'%2E')+
+                           '">'+ thumbHtml + this.title+'</a>' +
+                           '<ul data-role="listview" data-inset="true"></ul></li>';
                     } else {
                        ul += '<li class="articleDetails" data-item-index="'+index+'">'+
                       '<a href="#articleDetails&type=item&url='+encodeURIComponent(this.link).replace(/\./g,'%2E')+'">'
