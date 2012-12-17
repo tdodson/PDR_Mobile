@@ -4,10 +4,23 @@
 
     $(document).ready(function () {
 
-      // bind all links to childBrowser
-      $('a').bind('click',handleLinks(this));
 
-      // --------------------------------------------------------------------------
+        // bind all links to childBrowser
+        $('a').live('click', function(e) {
+            // if not a yanaLink, launch childBrowser
+            var link = $(this);
+            if (!link.hasClass("yanaLink")) {
+                //alert("not a yana link");
+                var thisUrl = link.attr('href');
+                showInChildBrowser(thisUrl);
+            } else {
+                //alert("is a yana link");
+                return true;
+            }
+        });
+
+
+        // --------------------------------------------------------------------------
       // --------------------------- SEARCH ---------------------------------------
       // --------------------------------------------------------------------------
        $('#osForm').submit(function(event) {
@@ -28,7 +41,7 @@
                     $.each(JSON.parse(result).query.results.rss.channel.item, function(index) {
                       ul += '<li id="result_'+index+'" data-source="'+this.link+
                         '" class="html articleDetails" data-theme="c" data-item-index="'+index+'">'+
-                        '<a href="#articleDetails&type=item&url='+
+                        '<a class="yanaLink" href="#articleDetails&type=item&url='+
                         encodeURIComponent(this.link).replace(/\./g,'%2E')+'">'+this.title+'</a></li>';
                     }); 
                   }
@@ -77,30 +90,25 @@
       $(':jqmData(url^=home)').live('pagebeforecreate', 
         function(event) {
           $(this).filter(':jqmData(url*=ui-page)').find(':jqmData(role=header)')
-            .prepend('<a href="#" data-rel="back" data-icon="arrow-l">Back</a>')
+            .prepend('<a class="yanaLink" href="#" data-rel="back" data-icon="arrow-l">Back</a>')
           $(this).filter(':jqmData(url*=ui-page)').find(':jqmData(role=header)')
-            .append('<a href="#home" data-icon="home">Home</a>')
+            .append('<a class="yanaLink" href="#home" data-icon="home">Home</a>')
       });
 
       // --------------------------------------------------------------------------
       // --------------------------- CHILD BROWSER --------------------------------
       // --------------------------------------------------------------------------
       function showInChildBrowser(url){
-          if (window.plugins.childBrowser != undefined)  {
-            window.plugins.childBrowser.showWebPage(url, { showLocationBar: true });
-            return false;
-          } else {
-              return true;
-          }
-      }
-      function handleLinks(link){
-            // if not a yanaLink, launch childBrowser
-            if (!$(link).hasClass("yanaLink")) {
-                var thisUrl = link.attr('href');
-                showInChildBrowser(thisUrl);
+          if (window.plugins != undefined) {
+            if (window.plugins.childBrowser != undefined)  {
+                window.plugins.childBrowser.showWebPage(url, { showLocationBar: true });
+                return false;
             } else {
                 return true;
             }
+          } else {
+              return true;
+          }
       }
 
       // --------------------------------------------------------------------------
@@ -150,7 +158,7 @@
         var ul = '';
         $.each(favorites, function(index) {
          ul += '<li class="articleDetails" data-item-link="'+this.link+'" data-theme="c">' +
-          '<a href="#articleDetails&type=item&url='+encodeURIComponent(this.link).replace(/\./g,'%2E')+
+          '<a class="yanaLink" href="#articleDetails&type=item&url='+encodeURIComponent(this.link).replace(/\./g,'%2E')+
           '&title='+encodeURIComponent(this.title).replace(/\(/g, "%28").replace(/\)/g, "%29") +
              '">'+this.title+'</a></li>';
         });
@@ -173,17 +181,17 @@
         $("#articleContent").html(cachedItems[itemIndex].description);
         $("#articleTitle").html(cachedItems[itemIndex].title);
         if (cachedItems[itemIndex].enclosure) {
-          buttons += '<a onclick="return showInChildBrowser(\'' + cachedItems[itemIndex].enclosure.url + '\');" '+
+          buttons += '<a class="yanaLink" onclick="return showInChildBrowser(\'' + cachedItems[itemIndex].enclosure.url + '\');" '+
             'rel="external" href="'+cachedItems[itemIndex].enclosure.url+'" data-role="button">PDF</a> ';
         }
         if (cachedItems[itemIndex].link) {
-          buttons += '<a onclick="return showInChildBrowser(\'' + cachedItems[itemIndex].link + '\');" '+
+          buttons += '<a class="yanaLink" onclick="return showInChildBrowser(\'' + cachedItems[itemIndex].link + '\');" '+
             'rel="external" href="'+cachedItems[itemIndex].link+'" data-role="button">Web</a> ';
         }
-          buttons += '<a href="#" id="removeFavButton" data-item-index="'+itemIndex+'" data-item-link="'+
+          buttons += '<a class="yanaLink" href="#" id="removeFavButton" data-item-index="'+itemIndex+'" data-item-link="'+
               cachedItems[itemIndex].link+
             '" class="deleteFavoriteButton" data-role="button">Remove from Favorites</a>';
-          buttons += '<a href="#" id="addFavButton" data-item-index="'+itemIndex+'" data-item-link="'+
+          buttons += '<a class="yanaLink" href="#" id="addFavButton" data-item-index="'+itemIndex+'" data-item-link="'+
               cachedItems[itemIndex].link+
             '" class="addFavoriteButton" data-role="button">Add to Favorites</a>';            
         $("#articleFooter").html(buttons).trigger('create');
@@ -284,12 +292,12 @@
                     var thumbHtml = thumb ? '<img class="thumbnail" src="' + thumb + '" />' : '';
                     if (this.link.type === 'rss' && this.link.content) {
                        ul += '<li data-source="'+this.link.content+'" class="feed">' +
-                        '<a href="#feedPage&type=feed&url='+encodeURIComponent(this.link.content).replace(/\./g,'%2E')+
+                        '<a class="yanaLink" href="#feedPage&type=feed&url='+encodeURIComponent(this.link.content).replace(/\./g,'%2E')+
                            '">'+ thumbHtml + this.title+'</a>' +
                            '<ul data-role="listview" data-inset="true"></ul></li>';
                     } else {
                        ul += '<li class="articleDetails" data-item-index="'+index+'">'+
-                      '<a href="#articleDetails&type=item&url='+encodeURIComponent(this.link).replace(/\./g,'%2E')+'">'
+                      '<a class="yanaLink" href="#articleDetails&type=item&url='+encodeURIComponent(this.link).replace(/\./g,'%2E')+'">'
                            + thumbHtml + this.title+' </a>';
                     } 
                   });
