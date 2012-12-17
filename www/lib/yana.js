@@ -6,10 +6,11 @@
 
 
         // bind all links to childBrowser
-        $('a').live('click', function(e) {
+        $('a').bind('click', function(e) {
             // if not a yanaLink, launch childBrowser
             var link = $(this);
             if (!link.hasClass("yanaLink")) {
+                e.stopPropagation();
                 //alert("not a yana link");
                 var thisUrl = link.attr('href');
                 showInChildBrowser(thisUrl);
