@@ -6,16 +6,14 @@
 
 
         // bind all links to childBrowser
-        $('a').bind('click', function(e) {
+        $('a').live('click', function(e) {
+            e.stopPropagation();
             // if not a yanaLink, launch childBrowser
             var link = $(this);
             if (!link.hasClass("yanaLink")) {
-                e.stopPropagation();
-                //alert("not a yana link");
                 var thisUrl = link.attr('href');
                 showInChildBrowser(thisUrl);
             } else {
-                //alert("is a yana link");
                 return true;
             }
         });
