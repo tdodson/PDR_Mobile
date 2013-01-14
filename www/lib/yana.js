@@ -7,11 +7,11 @@
 
         // bind all links to childBrowser
         $('a').live('click', function(e) {
-            e.preventDefault();
+            //e.preventDefault(); -- using return value of showInChildBrowser instead
             var link = $(this);
             if (!link.hasClass("yanaLink")) {
                 var thisUrl = link.attr('href');
-                showInChildBrowser(thisUrl);
+                return showInChildBrowser(thisUrl);
             } else {
                 return true;
             }
@@ -124,6 +124,7 @@
         function() { 
           var link = $(this).attr('data-item-link') 
           var item = getCachedItem(link);
+          console.log("adding favorite: "+item);
           if (item !== null){
             favorites.push(item);
             amplify.store("YANA.favorites",favorites);
@@ -178,6 +179,7 @@
         var buttons = '';
         $("#articleContent").html(cachedItems[itemIndex].description);
         $("#articleTitle").html(cachedItems[itemIndex].title);
+        console.log("PDF enclosure:" + cachedItems[itemIndex].enclosure);
         if (cachedItems[itemIndex].enclosure) {
           buttons += '<a class="yanaLink" onclick="return showInChildBrowser(\'' + cachedItems[itemIndex].enclosure.url + '\');" '+
             'rel="external" href="'+cachedItems[itemIndex].enclosure.url+'" data-role="button">PDF</a> ';
@@ -186,12 +188,12 @@
           buttons += '<a class="yanaLink" onclick="return showInChildBrowser(\'' + cachedItems[itemIndex].link + '\');" '+
             'rel="external" href="'+cachedItems[itemIndex].link+'" data-role="button">Web</a> ';
         }
-          buttons += '<a class="yanaLink" href="#" id="removeFavButton" data-item-index="'+itemIndex+'" data-item-link="'+
+          buttons += '<a class="yanaLink deleteFavoriteButton" href="#" id="removeFavButton" data-item-index="'+itemIndex+'" data-item-link="'+
               cachedItems[itemIndex].link+
-            '" class="deleteFavoriteButton" data-role="button">Remove from Favorites</a>';
-          buttons += '<a class="yanaLink" href="#" id="addFavButton" data-item-index="'+itemIndex+'" data-item-link="'+
+            '" data-role="button">Remove from Favorites</a>';
+          buttons += '<a class="yanaLink addFavoriteButton" href="#" id="addFavButton" data-item-index="'+itemIndex+'" data-item-link="'+
               cachedItems[itemIndex].link+
-            '" class="addFavoriteButton" data-role="button">Add to Favorites</a>';            
+            '" data-role="button">Add to Favorites</a>';
         $("#articleFooter").html(buttons).trigger('create');
         if (getFavoriteIndex(cachedItems[itemIndex].link) != -1) {
             $('#addFavButton').hide();
@@ -285,6 +287,7 @@
                 if (JSON.parse(result).query.results) {
                   currentItems = JSON.parse(result).query.results.item;
                   $.each(JSON.parse(result).query.results.item, function(index) {
+                    //console.log(this.enclosure);
                     addCachedItem(this);
                     var thumb = this.content ? (this.content.url? this.content.url : '') : '';
                     var thumbHtml = thumb ? '<img class="thumbnail" src="' + thumb + '" />' : '';
