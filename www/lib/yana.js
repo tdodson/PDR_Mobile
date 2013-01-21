@@ -11,10 +11,18 @@
             var link = $(this);
             var thisUrl = link.attr('href');
             if (!link.hasClass("yanaLink")) {
-                //return showInChildBrowser(thisUrl);
-                if (device.cordova) {
-                    window.open(thisUrl, '_blank'); // use inAppBrowser plugin
-                    return false;
+                // childBrowser
+                if (window.plugins != undefined) {
+                    if (window.plugins.childBrowser != undefined)  {
+                        window.plugins.childBrowser.showWebPage(url);
+                        return false;
+                    } else {
+                        return true;
+                    }
+                // inAppBrowser
+                //if (device.cordova) {
+                //    window.open(thisUrl, '_blank'); // use inAppBrowser plugin
+                //    return false;
                 } else {
                     return true;
                 }
@@ -98,22 +106,6 @@
           $(this).filter(':jqmData(url*=ui-page)').find(':jqmData(role=header)')
             .append('<a class="yanaLink" href="#home" data-icon="home">Home</a>')
       });
-
-      // --------------------------------------------------------------------------
-      // --------------------------- CHILD BROWSER --------------------------------
-      // --------------------------------------------------------------------------
-      function showInChildBrowser(url){
-          if (window.plugins != undefined) {
-            if (window.plugins.childBrowser != undefined)  {
-                window.plugins.childBrowser.showWebPage(url);
-                return false;
-            } else {
-                return true;
-            }
-          } else {
-              return true;
-          }
-      }
 
       // --------------------------------------------------------------------------
       // --------------------------- FAVORITES ------------------------------------
