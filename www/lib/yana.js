@@ -4,7 +4,6 @@
 
     $(document).ready(function () {
 
-
         // bind all links to childBrowser
         $('a').bind('click', function(e) {
             //e.preventDefault(); -- using return value of showInChildBrowser instead
@@ -13,26 +12,14 @@
             if (!link.hasClass("yanaLink")) {
                 // childBrowser
                 if (window.plugins != undefined) {
-                    alert("plugins");
                     if (window.plugins.childBrowser != undefined)  {
-                        allert("childBrowser");
                         window.plugins.childBrowser.showWebPage(url);
                         return false;
-                    } else {
-                        return true;
                     }
-                // inAppBrowser
-                //if (device.cordova) {
-                //    window.open(thisUrl, '_blank'); // use inAppBrowser plugin
-                //    return false;
-                } else {
-                    return true;
                 }
-            } else {
-                return true;
             }
+            return true;
         });
-
 
       // --------------------------------------------------------------------------
       // --------------------------- SEARCH ---------------------------------------
