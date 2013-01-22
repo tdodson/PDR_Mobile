@@ -13,7 +13,9 @@
             if (!link.hasClass("yanaLink")) {
                 // childBrowser
                 if (window.plugins != undefined) {
+                    alert("plugins");
                     if (window.plugins.childBrowser != undefined)  {
+                        allert("childBrowser");
                         window.plugins.childBrowser.showWebPage(url);
                         return false;
                     } else {
