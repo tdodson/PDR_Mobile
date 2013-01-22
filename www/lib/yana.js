@@ -1,6 +1,9 @@
-    // initialize amplify stores
-    var favorites = amplify.store.localStorage("YANA.favorites") ? amplify.store.localStorage("YANA.favorites") : [];
-    var cachedItems = amplify.store.sessionStorage("YANA.items") ? amplify.store.sessionStorage("YANA.items") : [];
+    // initialize favorites
+    var favorites = amplify.store("YANA.favorites") ? amplify.store("YANA.favorites") : [];
+    var cachedItems = amplify.store("YANA.items") ? amplify.store("YANA.items") : [];
+
+    //var favorites = amplify.store.localStorage("YANA.favorites") ? amplify.store.localStorage("YANA.favorites") : [];
+    //var cachedItems = amplify.store.sessionStorage("YANA.items") ? amplify.store.sessionStorage("YANA.items") : [];
 
     $(document).ready(function () {
 
