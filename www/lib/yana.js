@@ -6,25 +6,24 @@
 
 
         // bind all links to childBrowser
-        $('a').bind('click', function(e) {
+        $('a').live('click', function(e) {
             //e.preventDefault(); -- using return value of showInChildBrowser instead
             var link = $(this);
-            var thisUrl = link.attr('href');
-            if (!link.hasClass("yanaLink")) {
-                //return showInChildBrowser(thisUrl);
-                if (device.cordova) {
-                    window.open(thisUrl, '_blank'); // use inAppBrowser plugin
-                    return false;
-                } else {
-                    return true;
-                }
+            var isPdf = false;
+            if (link.attr('href').toLowerCase().indexOf(".pdf") >= 0) {
+                isPdf = true;
+            }
+            if (!link.hasClass("yanaLink") || isPdf) {
+                var thisUrl = link.attr('href');
+                return showInChildBrowser(thisUrl);
+
             } else {
                 return true;
             }
         });
 
 
-      // --------------------------------------------------------------------------
+        // --------------------------------------------------------------------------
       // --------------------------- SEARCH ---------------------------------------
       // --------------------------------------------------------------------------
        $('#osForm').submit(function(event) {
