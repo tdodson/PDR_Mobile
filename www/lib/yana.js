@@ -1,6 +1,6 @@
     // initialize favorites
-    var favorites = amplify.store.localStorage("YANA.favorites") ? amplify.store.localStorage("YANA.favorites") : [];
-    var cachedItems = amplify.store.sessionStorage("YANA.items") ? amplify.store.sessionStorage("YANA.items") : [];
+    var favorites = amplify.store("YANA.favorites") ? amplify.store("YANA.favorites") : [];
+    var cachedItems = amplify.store("YANA.items") ? amplify.store("YANA.items") : [];
 
     $(document).ready(function () {
 
@@ -9,14 +9,9 @@
         $('a').live('click', function(e) {
             //e.preventDefault(); -- using return value of showInChildBrowser instead
             var link = $(this);
-            var isPdf = false;
-            if (link.attr('href').toLowerCase().indexOf(".pdf") >= 0) {
-                isPdf = true;
-            }
-            if (!link.hasClass("yanaLink") || isPdf) {
+            if (!link.hasClass("yanaLink")) {
                 var thisUrl = link.attr('href');
                 return showInChildBrowser(thisUrl);
-
             } else {
                 return true;
             }
@@ -104,7 +99,7 @@
       function showInChildBrowser(url){
           if (window.plugins != undefined) {
             if (window.plugins.childBrowser != undefined)  {
-                window.plugins.childBrowser.showWebPage(url);
+                window.plugins.childBrowser.showWebPage(url, { showLocationBar: true });
                 return false;
             } else {
                 return true;
@@ -127,11 +122,12 @@
 
       $('.addFavoriteButton').live('click',
         function() { 
-          var link = $(this).attr('data-item-link')
+          var link = $(this).attr('data-item-link') 
           var item = getCachedItem(link);
+          console.log("adding favorite: "+item);
           if (item !== null){
             favorites.push(item);
-            amplify.store.localStorage("YANA.favorites",favorites);
+            amplify.store("YANA.favorites",favorites);
           }
           $('#addFavButton').hide();
           $('#removeFavButton').show();
@@ -143,7 +139,7 @@
           var pos = getFavoriteIndex(link);
           if ( pos != -1) { 
             favorites.splice(pos, 1);
-            amplify.store.localStorage("YANA.favorites",favorites);
+            amplify.store("YANA.favorites",favorites);
           }
           $('#addFavButton').show();
           $('#removeFavButton').hide();
@@ -183,13 +179,13 @@
         var buttons = '';
         $("#articleContent").html(cachedItems[itemIndex].description);
         $("#articleTitle").html(cachedItems[itemIndex].title);
-        //console.log("PDF enclosure:" + cachedItems[itemIndex].enclosure);
+        console.log("PDF enclosure:" + cachedItems[itemIndex].enclosure);
         if (cachedItems[itemIndex].enclosure) {
-          buttons += '<a class="yanaLink" '+
+          buttons += '<a class="yanaLink" onclick="return showInChildBrowser(\'' + cachedItems[itemIndex].enclosure.url + '\');" '+
             'rel="external" href="'+cachedItems[itemIndex].enclosure.url+'" data-role="button">PDF</a> ';
         }
         if (cachedItems[itemIndex].link) {
-          buttons += '<a class="yanaLink" '+
+          buttons += '<a class="yanaLink" onclick="return showInChildBrowser(\'' + cachedItems[itemIndex].link + '\');" '+
             'rel="external" href="'+cachedItems[itemIndex].link+'" data-role="button">Web</a> ';
         }
           buttons += '<a class="yanaLink deleteFavoriteButton" href="#" id="removeFavButton" data-item-index="'+itemIndex+'" data-item-link="'+
@@ -222,7 +218,7 @@
       function addCachedItem(item) {
           if (getItemIndex(item.link) === -1){
             cachedItems.push(item);
-            amplify.store.sessionStorage("YANA.items",cachedItems);
+            amplify.store("YANA.items",cachedItems);
           }
       }
 
