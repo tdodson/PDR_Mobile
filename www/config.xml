@@ -13,11 +13,9 @@
         Thomas Dodson
     </author>
 
-    <preference name="phonegap-version" value="2.2.0" />
+    <preference name="phonegap-version" value="2.3.0" />
     <gap:plugin name="ChildBrowser" version="~3" />
-    <!--
     <gap:plugin name="InAppBrowser" value="CDVInAppBrowser" />
-    -->
 
     <feature name="http://api.phonegap.com/1.0/device" />
 
