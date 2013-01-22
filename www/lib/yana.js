@@ -1,6 +1,6 @@
-    // initialize favorites
-    var favorites = amplify.store("YANA.favorites") ? amplify.store("YANA.favorites") : [];
-    var cachedItems = amplify.store("YANA.items") ? amplify.store("YANA.items") : [];
+    // initialize amplify stores
+    var favorites = amplify.store.localStorage("YANA.favorites") ? amplify.store.localStorage("YANA.favorites") : [];
+    var cachedItems = amplify.store.sessionStorage("YANA.items") ? amplify.store.sessionStorage("YANA.items") : [];
 
     $(document).ready(function () {
 
@@ -186,12 +186,10 @@
           buttons += '<a class="yanaLink" onclick="return showInChildBrowser(\'' + cachedItems[itemIndex].link + '\');" '+
             'rel="external" href="'+cachedItems[itemIndex].link+'" data-role="button">Web</a> ';
         }
-          buttons += '<a class="yanaLink" href="#" id="removeFavButton" data-item-index="'+itemIndex+'" data-item-link="'+
-              cachedItems[itemIndex].link+
-            '" class="deleteFavoriteButton" data-role="button">Remove from Favorites</a>';
-          buttons += '<a class="yanaLink" href="#" id="addFavButton" data-item-index="'+itemIndex+'" data-item-link="'+
-              cachedItems[itemIndex].link+
-            '" class="addFavoriteButton" data-role="button">Add to Favorites</a>';            
+          buttons += '<a class="yanaLink deleteFavoriteButton" href="#" id="removeFavButton" data-item-index="'+itemIndex+'" data-item-link="'+
+              cachedItems[itemIndex].link + '" data-role="button">Remove from Favorites</a>';
+          buttons += '<a class="yanaLink addFavoriteButton" href="#" id="addFavButton" data-item-index="'+itemIndex+'" data-item-link="'+
+              cachedItems[itemIndex].link + '" data-role="button">Add to Favorites</a>';
         $("#articleFooter").html(buttons).trigger('create');
         if (getFavoriteIndex(cachedItems[itemIndex].link) != -1) {
             $('#addFavButton').hide();
