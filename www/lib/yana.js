@@ -9,7 +9,7 @@
         $('a').bind('click', function(e) {
             //e.preventDefault(); -- using return value of showInChildBrowser instead
             var link = $(this);
-            var url = link.attr('href');
+            var thisUrl = link.attr('href');
             if (!link.hasClass("yanaLink")) {
                 // childBrowser
                 if (window.plugins != undefined) {
