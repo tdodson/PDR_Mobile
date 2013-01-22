@@ -15,7 +15,6 @@
 
     <preference name="phonegap-version" value="2.2.0" />
     <gap:plugin name="ChildBrowser" version="~3" />
-    <access origin="*" />
     <!--
     <gap:plugin name="InAppBrowser" value="CDVInAppBrowser" />
     -->

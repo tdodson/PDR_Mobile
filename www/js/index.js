@@ -10,7 +10,7 @@ var app = {
         // so we need to call app.report(), and not this.report()
 
         var cb = ChildBrowser.install();
-        if (cb != null)
+        if(cb != null)
         {
             cb.onLocationChange = function(loc){ root.locChanged(loc); };
             cb.onClose = function(){root.onCloseBrowser()};
