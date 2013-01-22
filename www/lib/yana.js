@@ -7,11 +7,11 @@
 
         // bind all links to childBrowser
         $('a').live('click', function(e) {
-            e.preventDefault();
+            //e.preventDefault();
             var link = $(this);
             if (!link.hasClass("yanaLink")) {
                 var thisUrl = link.attr('href');
-                showInChildBrowser(thisUrl);
+                return showInChildBrowser(thisUrl);
             } else {
                 return true;
             }
