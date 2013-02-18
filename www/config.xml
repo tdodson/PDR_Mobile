@@ -18,7 +18,7 @@
     <gap:plugin name="InAppBrowser" value="CDVInAppBrowser" />
 
     <access origin="*" />
-    
+
     <feature name="http://api.phonegap.com/1.0/device" />
 
     <preference name="orientation"      value="default" />
