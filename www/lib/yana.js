@@ -18,7 +18,7 @@
         });
 
 
-        // --------------------------------------------------------------------------
+      // --------------------------------------------------------------------------
       // --------------------------- SEARCH ---------------------------------------
       // --------------------------------------------------------------------------
        $('#osForm').submit(function(event) {
@@ -58,6 +58,19 @@
     }); // document.ready
 
     // --------------------------------------------------------------------------
+    // --------------------------- CHILD BROWSER --------------------------------
+    // --------------------------------------------------------------------------
+    function showInChildBrowser(url){
+        if (window.plugins != undefined) {
+            if (window.plugins.childBrowser != undefined)  {
+                window.plugins.childBrowser.showWebPage(url, { showLocationBar: true });
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // --------------------------------------------------------------------------
     // ------------------- CALL RENDERS BASED ON URL PARAMS ---------------------
     // --------------------------------------------------------------------------
     $(document).bind( "pagebeforechange", function( e, data ) {
@@ -92,22 +105,6 @@
           $(this).filter(':jqmData(url*=ui-page)').find(':jqmData(role=header)')
             .append('<a class="yanaLink" href="#home" data-icon="home">Home</a>')
       });
-
-      // --------------------------------------------------------------------------
-      // --------------------------- CHILD BROWSER --------------------------------
-      // --------------------------------------------------------------------------
-      function showInChildBrowser(url){
-          if (window.plugins != undefined) {
-            if (window.plugins.childBrowser != undefined)  {
-                window.plugins.childBrowser.showWebPage(url, { showLocationBar: true });
-                return false;
-            } else {
-                return true;
-            }
-          } else {
-              return true;
-          }
-      }
 
       // --------------------------------------------------------------------------
       // --------------------------- FAVORITES ------------------------------------
