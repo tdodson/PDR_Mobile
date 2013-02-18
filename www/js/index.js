@@ -22,7 +22,8 @@ var app = {
 
         app.report('deviceready');
     },
-    report: function(id) { 
+    report: function(id) {
+        alert(id);
         console.log("report:" + id);
         // hide the .pending <p> and show the .complete <p>
         document.querySelector('#' + id + ' .pending').className += ' hide';
