@@ -62,10 +62,12 @@
     // --------------------------------------------------------------------------
     function showInChildBrowser(url){
         if (window.plugins != undefined) {
-            if (window.plugins.childBrowser != undefined)  {
-                window.plugins.childBrowser.showWebPage(url, { showLocationBar: true });
-                return false;
-            }
+            var ref = window.open(url, '_blank');
+            return false;
+//            if (window.plugins.childBrowser != undefined)  {
+//                window.plugins.childBrowser.showWebPage(url, { showLocationBar: true });
+//                return false;
+//            }
         }
         return true;
     }
