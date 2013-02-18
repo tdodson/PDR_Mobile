@@ -4,16 +4,13 @@
 
     $(document).ready(function () {
 
-
         // bind all links to childBrowser
         $('a').live('click', function(e) {
             //e.preventDefault();
             var link = $(this);
             if (!link.hasClass("yanaLink")) {
                 var thisUrl = link.attr('href');
-                //return showInChildBrowser(thisUrl);
-                var iabRef = window.open(thisUrl, '_blank');
-                return false;
+                return showInChildBrowser(thisUrl);
             } else {
                 return true;
             }
@@ -63,17 +60,13 @@
     // --------------------------- CHILD BROWSER --------------------------------
     // --------------------------------------------------------------------------
     function showInChildBrowser(url){
-//        if (window.plugins != undefined) {
-//            alert("using iab");
-            var iabRef = window.open(url, '_blank');
-            return false;
-//            if (window.plugins.childBrowser != undefined)  {
-//                window.plugins.childBrowser.showWebPage(url, { showLocationBar: true });
-//                return false;
-//            }
-//        }
-//        alert("not using iab");
-//        return true;
+        if (window.plugins != undefined) {
+            if (window.plugins.childBrowser != undefined)  {
+                window.plugins.childBrowser.showWebPage(url, { showLocationBar: true });
+                return false;
+            }
+        }
+        return true;
     }
 
     // --------------------------------------------------------------------------

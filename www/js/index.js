@@ -9,16 +9,16 @@ var app = {
         // note that this is an event handler so the scope is that of the event
         // so we need to call app.report(), and not this.report()
 
-//        var cb = ChildBrowser.install();
-//        if(cb != null)
-//        {
-//            cb.onLocationChange = function(loc){ root.locChanged(loc); };
-//            cb.onClose = function(){root.onCloseBrowser()};
-//            cb.onOpenExternal = function(){root.onOpenExternal();};
-//
-//            window.plugins.childBrowser.showWebPage("http://google.com");
-//
-//        }
+        var cb = ChildBrowser.install();
+        if(cb != null)
+        {
+            cb.onLocationChange = function(loc){ root.locChanged(loc); };
+            cb.onClose = function(){root.onCloseBrowser()};
+            cb.onOpenExternal = function(){root.onOpenExternal();};
+
+            window.plugins.childBrowser.showWebPage("http://google.com");
+
+        }
 
         app.report('deviceready');
     },
