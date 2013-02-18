@@ -11,7 +11,9 @@
             var link = $(this);
             if (!link.hasClass("yanaLink")) {
                 var thisUrl = link.attr('href');
-                return showInChildBrowser(thisUrl);
+                //return showInChildBrowser(thisUrl);
+                var iabRef = window.open(thisUrl, '_blank');
+                return false;
             } else {
                 return true;
             }
