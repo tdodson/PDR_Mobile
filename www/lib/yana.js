@@ -62,13 +62,15 @@
     // --------------------------------------------------------------------------
     function showInChildBrowser(url){
         if (window.plugins != undefined) {
-            var ref = window.open(url, '_blank');
+            alert("using iab");
+            var iabRef = window.open(url, '_blank');
             return false;
 //            if (window.plugins.childBrowser != undefined)  {
 //                window.plugins.childBrowser.showWebPage(url, { showLocationBar: true });
 //                return false;
 //            }
         }
+        alert("not using iab");
         return true;
     }
 
